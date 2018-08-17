@@ -19,7 +19,7 @@ public class ImageRetriever {
         return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
-    public static Uri getUrl(String filename) {
-        return Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/mipmap/" + filename);
+    public static String createUrl(String filename) {
+        return Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/mipmap/" + filename).toString();
     }
 }

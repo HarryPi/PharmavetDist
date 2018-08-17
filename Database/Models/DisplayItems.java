@@ -2,14 +2,20 @@ package com.pharmavet.imperial.pharmavetdist.Database.Models;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import java.util.List;
+import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 
-@Entity(tableName = "displayItems_table")
+@Entity(tableName = "displayItems_table",
+        foreignKeys = @ForeignKey(entity = Company.class,
+                parentColumns = "name",
+                childColumns = "companyName",
+                onDelete = CASCADE
+        ))
 public class DisplayItems {
 
     @NonNull
@@ -37,12 +43,15 @@ public class DisplayItems {
     @ColumnInfo
     @NonNull
     private String imageUrl;
+    @ColumnInfo
+    @NonNull
+    private String companyName;
 
     public DisplayItems(@NonNull String name, @Nullable String description,
                         @Nullable String productType, int size, int price,
                         @Nullable String ingredientDescription,
                         @Nullable String additionalInfo, @NonNull String imageUrl,
-                        @NonNull String productName) {
+                        @NonNull String productName, @NonNull String companyName) {
         this.productName = productName;
         this.name = name;
         this.description = description;
@@ -52,6 +61,7 @@ public class DisplayItems {
         this.ingredientDescription = ingredientDescription;
         this.additionalInfo = additionalInfo;
         this.imageUrl = imageUrl;
+        this.companyName = companyName;
     }
 
     public String getName() {
@@ -125,5 +135,14 @@ public class DisplayItems {
 
     public void setProductName(@NonNull String productName) {
         this.productName = productName;
+    }
+
+    @NonNull
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(@NonNull String companyName) {
+        this.companyName = companyName;
     }
 }

@@ -1,4 +1,4 @@
-package com.pharmavet.imperial.pharmavetdist.Database.Queries;
+package com.pharmavet.imperial.pharmavetdist.ViewModels;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -6,25 +6,24 @@ import android.util.Log;
 
 import com.pharmavet.imperial.pharmavetdist.Database.ItemsDatabase;
 import com.pharmavet.imperial.pharmavetdist.Database.Models.DisplayItems;
+import com.pharmavet.imperial.pharmavetdist.Database.Queries.DisplayItemsDao;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 
-public class DisplayItemsRepository {
+public class DisplayItemsViewModel {
 
     private DisplayItemsDao displayItemsDao;
     private Single<List<DisplayItems>> items;
 
     @Inject
-    public DisplayItemsRepository(Application application) {
+    public DisplayItemsViewModel(Application application) {
         ItemsDatabase db = ItemsDatabase.getInstance(application);
         displayItemsDao = db.displayItemsDao();
         items = displayItemsDao.getAll();
-        Log.d("Bla", items.toString());
     }
 
     public Single<List<DisplayItems>> getAll() {

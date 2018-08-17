@@ -9,16 +9,19 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
+import com.pharmavet.imperial.pharmavetdist.Database.Models.Company;
 import com.pharmavet.imperial.pharmavetdist.Database.Models.DisplayItems;
+import com.pharmavet.imperial.pharmavetdist.Database.Queries.CompanyDao;
 import com.pharmavet.imperial.pharmavetdist.Database.Queries.DisplayItemsDao;
 import com.pharmavet.imperial.pharmavetdist.Services.ImageRetriever;
 
-@Database(entities = {DisplayItems.class}, version = 1)
+@Database(entities = {DisplayItems.class, Company.class}, version = 3)
 public abstract class ItemsDatabase extends RoomDatabase {
 
     private static volatile ItemsDatabase INSTANCE;
 
     public abstract DisplayItemsDao displayItemsDao();
+    public abstract CompanyDao companyDao();
 
     public static ItemsDatabase getInstance(final Context context) {
         if (INSTANCE == null) {
@@ -43,18 +46,23 @@ public abstract class ItemsDatabase extends RoomDatabase {
     }
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
-        private final DisplayItemsDao dao;
+        private final DisplayItemsDao displayItemsDao;
+        private final CompanyDao companyDao;
 
         private PopulateDbAsync(ItemsDatabase db) {
-            dao = db.displayItemsDao();
+            displayItemsDao = db.displayItemsDao();
+            companyDao = db.companyDao();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-           /* dao.deleteAll();
-            dao.insert(new DisplayItems("acetylcarnitinealphalipoicacidcapules", null,
+            displayItemsDao.deleteAll();
+            companyDao.deleteAllCompanies();;
+            companyDao.insert(new Company("BioCare", ImageRetriever.createUrl("biocare_logo")));
+            companyDao.insert(new Company("Vogel", ImageRetriever.createUrl("vogel_logo")));
+            displayItemsDao.insert(new DisplayItems("acetylcarnitinealphalipoicacidcapules", null,
                     null, 0, 10, null, null,
-                    Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/mipmap/" + "acetylcarnitinealphalipoicacidcapules").toString(), "Acetyl Carnitine Alpha Lipoic Acid Capules"));*/
+                    Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/mipmap/" + "acetylcarnitinealphalipoicacidcapules").toString(), "Acetyl Carnitine Alpha Lipoic Acid Capules", "BioCare"));
             return null;
         }
     }

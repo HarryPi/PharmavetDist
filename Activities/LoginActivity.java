@@ -8,14 +8,16 @@ import android.util.Log;
 
 import com.pharmavet.imperial.pharmavetdist.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // For future use
+        Log.d(TAG, "Launching...");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Log.d("BLA", Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/mipmap/"+"htpcapsules").toString());
-        startActivity(new Intent(LoginActivity.this, BaseActivity.class));
+        super.setupSideNavAndToolbar();
+        startActivity(new Intent(this, AllCompaniesActivity.class));
     }
 }
