@@ -50,9 +50,10 @@ public class AllCompaniesActivity extends BaseActivity {
                 .subscribeOn(Schedulers.computation())
                 .doOnSuccess((companies -> {
                     adapter.setCompanies(companies);
-                    recyclerView.setAdapter(adapter);
                     runOnUiThread( () -> {
+                        recyclerView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
+                        this.addRecyclerOnTouchEvent(companies);
                         showProgress(false);
                     });
                 }))
@@ -67,6 +68,9 @@ public class AllCompaniesActivity extends BaseActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
+                                Intent intent = new Intent(AllCompaniesActivity.this, CompanyItemsActivity.class);
+                                intent.putExtra("companyName", companies.get(position).getName());
+                                startActivity(intent);
                             }
 
                             @Override

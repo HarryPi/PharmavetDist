@@ -1,6 +1,7 @@
 package com.pharmavet.imperial.pharmavetdist.Modules;
 
-import com.pharmavet.imperial.pharmavetdist.Services.ImageRetriever;
+
+import com.pharmavet.imperial.pharmavetdist.Util.ImageHandlers.ImageRetriever;
 
 import javax.inject.Singleton;
 

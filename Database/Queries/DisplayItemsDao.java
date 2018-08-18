@@ -22,4 +22,6 @@ public interface DisplayItemsDao {
     void delete(DisplayItems displayItems);
     @Query("DELETE FROM DISPLAYITEMS_TABLE")
     void deleteAll();
+    @Query("SELECT * FROM displayItems_table WHERE companyName=:companyName")
+    Single<List<DisplayItems>> findAllProductsForCompany(final String companyName);
 }

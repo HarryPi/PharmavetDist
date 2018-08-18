@@ -8,66 +8,59 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pharmavet.imperial.pharmavetdist.Database.Models.Company;
+import com.pharmavet.imperial.pharmavetdist.Database.Models.DisplayItems;
 import com.pharmavet.imperial.pharmavetdist.R;
 import com.pharmavet.imperial.pharmavetdist.Services.RoundedCornersTransform;
-import com.pharmavet.imperial.pharmavetdist.ViewModels.CompanyViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AllCompaniesAdapter extends RecyclerView.Adapter<AllCompaniesAdapter.ViewHolder> {
+public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
 
-    @Inject
     Picasso picasso;
-    @Inject
-    CompanyViewModel companyViewModel;
 
-    private List<Company> companies = new ArrayList<>();
+    private List<DisplayItems> displayItems;
 
-    @Inject
-    public AllCompaniesAdapter() {
+    public ItemsAdapter(List<DisplayItems> displayItems, Picasso picasso) {
+        this.displayItems = displayItems;
+        this.picasso = picasso;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.company_row, parent, false);
+                .inflate(R.layout.items_row, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Company company = companies.get(position);
-        holder.companyName.setText(company.getName());
-        picasso.load(company.getImageUrl())
+        DisplayItems item = displayItems.get(position);
+
+        picasso.load(item.getImageUrl())
                 .transform(new RoundedCornersTransform())
                 .placeholder(R.drawable.loading_animation)
                 .fit()
-                .into(holder.companyImage);
+                .into(holder.item);
     }
 
     @Override
     public int getItemCount() {
-        return companies.size();
+        return displayItems.size();
     }
 
-    public void setCompanies(List<Company> companies) {
-        this.companies = companies;
+    public void setDisplayItems(List<DisplayItems> items) {
+        this.displayItems = items;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.company_image)
-        ImageView companyImage;
-        @BindView(R.id.company_name)
-        TextView companyName;
+        @BindView(R.id.item_image)
+        ImageView item;
+
 
         public ViewHolder(View view) {
             super(view);

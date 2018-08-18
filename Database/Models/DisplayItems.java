@@ -31,7 +31,7 @@ public class DisplayItems {
     @Nullable
     private String productType;
     @ColumnInfo
-    private int size;
+    private String size;
     @ColumnInfo
     private int price;
     @ColumnInfo
@@ -41,27 +41,57 @@ public class DisplayItems {
     @Nullable
     private String additionalInfo;
     @ColumnInfo
+    @Nullable
+    private String recommendedIntake;
+    @ColumnInfo
+    @Nullable
+    private String warnings;
+    @ColumnInfo
     @NonNull
     private String imageUrl;
     @ColumnInfo
     @NonNull
     private String companyName;
 
-    public DisplayItems(@NonNull String name, @Nullable String description,
-                        @Nullable String productType, int size, int price,
-                        @Nullable String ingredientDescription,
-                        @Nullable String additionalInfo, @NonNull String imageUrl,
-                        @NonNull String productName, @NonNull String companyName) {
-        this.productName = productName;
+    public DisplayItems(@NonNull String name, @NonNull String productName, String description, String productType, String size, int price, String ingredientDescription, String additionalInfo, String recommendedIntake, String warnings, @NonNull String imageUrl, @NonNull String companyName) {
         this.name = name;
+        this.productName = productName;
         this.description = description;
         this.productType = productType;
         this.size = size;
         this.price = price;
         this.ingredientDescription = ingredientDescription;
         this.additionalInfo = additionalInfo;
+        this.recommendedIntake = recommendedIntake;
+        this.warnings = warnings;
         this.imageUrl = imageUrl;
         this.companyName = companyName;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    @Nullable
+    public String getRecommendedIntake() {
+        return recommendedIntake;
+    }
+
+    public void setRecommendedIntake(@Nullable String recommendedIntake) {
+        this.recommendedIntake = recommendedIntake;
+    }
+
+    @Nullable
+    public String getWarnings() {
+        return warnings;
+    }
+
+    public void setWarnings(@Nullable String warnings) {
+        this.warnings = warnings;
     }
 
     public String getName() {
@@ -88,13 +118,7 @@ public class DisplayItems {
         this.productType = productType;
     }
 
-    public int getSize() {
-        return size;
-    }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
 
     public int getPrice() {
         return price;

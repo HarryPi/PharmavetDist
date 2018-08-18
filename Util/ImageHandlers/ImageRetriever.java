@@ -1,4 +1,4 @@
-package com.pharmavet.imperial.pharmavetdist.Services;
+package com.pharmavet.imperial.pharmavetdist.Util.ImageHandlers;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +20,6 @@ public class ImageRetriever {
     }
 
     public static String createUrl(String filename) {
-        return Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/mipmap/" + filename).toString();
+        return Uri.parse("android.resource://com.pharmavet.imperial.pharmavetdist/drawable/" + filename).toString();
     }
 }

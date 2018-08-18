@@ -34,7 +34,9 @@ public class DisplayItemsViewModel {
         new insertAsyncAll(displayItemsDao).execute(displayItems);
 
     }
-
+    public Single<List<DisplayItems>> findAllProductsForCompany(String companyName) {
+        return displayItemsDao.findAllProductsForCompany(companyName);
+    }
     private static class insertAsyncAll extends AsyncTask<DisplayItems, Void, Void> {
         private DisplayItemsDao dao;
 

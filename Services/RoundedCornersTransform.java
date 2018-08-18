@@ -1,4 +1,4 @@
-package com.pharmavet.imperial.pharmavetdist.Util.Picasso;
+package com.pharmavet.imperial.pharmavetdist.Services;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

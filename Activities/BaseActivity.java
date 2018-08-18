@@ -15,9 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.pharmavet.imperial.pharmavetdist.App;
+import com.pharmavet.imperial.pharmavetdist.Util.ImageHandlers.ImageRetriever;
 import com.pharmavet.imperial.pharmavetdist.ViewModels.DisplayItemsViewModel;
 import com.pharmavet.imperial.pharmavetdist.R;
-import com.pharmavet.imperial.pharmavetdist.Services.ImageRetriever;
 
 import javax.inject.Inject;
 
