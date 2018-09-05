@@ -1,5 +1,6 @@
 package com.pharmavet.imperial.pharmavetdist.Activities;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import com.pharmavet.imperial.pharmavetdist.Adapters.AllCompaniesAdapter;
 import com.pharmavet.imperial.pharmavetdist.Adapters.RecyclerItemClickListener;
 import com.pharmavet.imperial.pharmavetdist.App;
 import com.pharmavet.imperial.pharmavetdist.Database.Models.Company;
+import com.pharmavet.imperial.pharmavetdist.Database.Models.DisplayItems;
 import com.pharmavet.imperial.pharmavetdist.R;
 import com.pharmavet.imperial.pharmavetdist.ViewModels.CompanyViewModel;
 
@@ -41,7 +43,11 @@ public class AllCompaniesActivity extends BaseActivity {
         ((App) getApplication()).getMainComponent().inject(this);
         showProgress(true);
         setupRecyclerView();
+
+
     }
+
+
 
     private void setupRecyclerView() {
         recyclerView.setHasFixedSize(true);
